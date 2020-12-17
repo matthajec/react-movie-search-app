@@ -1,0 +1,61 @@
+.navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+    
+    .page-nav {
+        display: flex;
+        align-items: center;
+
+        .nav-info {
+            font-size: 1.5rem;
+        }
+
+        .nav-btn {
+            width: 3.2rem;
+            height: 3.2rem;
+            border-radius: 50%;
+            margin-left: 1rem;
+        }
+    }
+
+    .mdb-logo {
+        height: 2.2rem;
+    }
+
+    .mdb-logo-large {
+        display: none;
+    }
+
+    .mdb-logo-small {
+        display: inline;
+    }
+
+    @media (min-width: $mobileBreak) {
+        .mdb-logo-small {
+            display: none;
+        }
+        .mdb-logo-large {
+            display: inline;
+        }
+
+
+    }
+
+    @media (max-width: $mobileBreak) {
+        & {
+            flex-direction: column;
+            align-items: baseline;
+
+            .page-nav {
+                order: 0;
+            }
+
+            .db-link {
+                order: -1;
+                margin-bottom: 1rem;
+            }
+        }
+    }
+}

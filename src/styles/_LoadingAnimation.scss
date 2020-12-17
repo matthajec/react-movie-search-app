@@ -1,0 +1,52 @@
+.loading {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    .loading-text {
+        font-size: 2.4rem;
+        margin-bottom: 1rem;
+        font-weight: bold;
+    }
+
+    .loading-animation {
+        position: relative;
+        height: 1.6rem;
+        width: 1.6rem;
+        background-color: $darkColor;
+        border-radius: 50%;
+        animation: loading 3s ease-in 1s infinite;
+
+
+        &:before,
+        &:after {
+            content: '';
+            position: absolute;
+            height: 1.6rem;
+            width: 1.6rem;
+            background-color: $darkColor;
+            border-radius: 50%;
+        }
+
+        &:before {
+            left: -2.6rem;
+            animation: loading 3s ease-in 0s infinite;
+        }
+
+        &:after {
+            left: 2.6rem;
+            animation: loading 3s ease-in 2s infinite;
+        }
+    }
+}
+
+@keyframes loading {
+    0%, 100% {
+        background-color: $darkColor;
+    }
+    50% {
+        background-color: $lightColor;
+    }
+}
