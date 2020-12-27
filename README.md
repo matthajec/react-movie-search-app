@@ -26,4 +26,4 @@ The biggest challenge I had when creating this app was fixing a bug where the pa
     })
   }
 ```
-I put current page and the current search string togehter so that the use effect runs when both change (since they change together), so the current page it fetches it always 1 if a new search is initiated. My solution also had the added benefit of preventing repeat requests (if the user is already on page one and the query hasn't changed then the search is stopped before it ever sends a request to the server or rerenders any components)
+I put current page and the current search string together in a state. This means that whenever a new query is searched (search()) currentPage can be set to 1 and the effect will trigger. If somoene just changes pages then the effect will also trigger, but it won't run the search function and set currentPage to 0.
