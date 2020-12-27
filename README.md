@@ -8,7 +8,7 @@ React Movie Search is a simple app that allows the user to lookup movies using [
 * .env
 
 ## Challenges
-The biggest challenge I had when creating this app was getting the pages to reset to 1 whenever a user submitted a new query. It was causing a bug because the app would send a request for a page that didn't exist on a new serch. This is how I fixed it (with irrlevant info ommited):
+The biggest challenge I had when creating this app was fixing a bug where the page would not update upon searching for a new query. It was causing a bug because the app would send a request for a page that didn't exist on a new serch. This is how I fixed it (with irrlevant info ommited):
 ```javascript
   const [currentQuery, setCurrentQuery] = useState({
     currentPage: null,
