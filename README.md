@@ -1,70 +1,29 @@
-# Getting Started with Create React App
+# React Movie Search
+## Description
+React Movie Search is a simple app that allows the user to lookup movies using [TMDb's](themovidedb.com) REST API.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Framework(s)/Package(s)
+* ReactJS
+* SCSS
+* .env
 
-## Available Scripts
+## Challenges
+The biggest challenge I had when creating this app was getting the pages to reset to 1 whenever a user submitted a new query. It was causing a bug because the app would send a request for a page that didn't exist on a new serch. This is how I fixed it (with irrlevant info ommited):
+```javascript
+  const [currentQuery, setCurrentQuery] = useState({
+    currentPage: null,
+    currentSearch: null
+  })
+  
+  useEffect(() => {
+    // fetch the resource and set the propper states here
+  }, [currentQuery])
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  function search() => {
+    setCurrentQuery({
+      currentPage: 1,
+      currentSearch: query //"query" is the value of the search input box
+    })
+  }
+```
+I put current page and the current search string togehter so that the use effect runs when both change (since they change together), so the current page it fetches it always 1 if a new search is initiated. My solution also had the added benefit of preventing repeat requests (if the user is already on page one and the query hasn't changed then the search is stopped before it ever sends a request to the server or rerenders any components)
